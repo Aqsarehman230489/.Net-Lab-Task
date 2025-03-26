@@ -1,0 +1,48 @@
+# Build output directories
+bin/
+obj/
+Debug/
+Release/
+
+# User-specific files
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+.idea/
+*.sln.iml
+
+# Environment and secrets
+.env
+.env.local
+secrets.json
+
+# Package dependencies
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Log files
+*.log
+logs/
+
+# Temporary/cache files
+*.tmp
+*.cache
+*.pdb
+
+# NuGet and project build files
+*.nuget/
+*.nuget.g.props
+*.nuget.g.targets
+project.assets.json
+project.nuget.cache
+
+# Blazor WebAssembly specific
+wwwroot/dist/
+wwwroot/node_modules/
+wwwroot/lib/
+wwwroot/_framework/

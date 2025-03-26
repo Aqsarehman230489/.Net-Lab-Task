@@ -1,0 +1,56 @@
+﻿@page "/studentdetails"
+@inject IStudentService StudentService
+@rendermode InteractiveServer
+
+<h3>StudentDetails</h3>
+
+<table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Full Name</th>
+                <th>Description</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Studentlist)
+            {
+                <tr>
+                <td>@item.Id</td>
+                <td>@item.FullName</td>
+                <td>@item.Description</td>
+                  <td><button @onclick="()=>Delete(item.Id)">Delete</button>
+                </td> 
+                </tr>
+            }
+        </tbody>
+    </table>
+
+<EditForm Model="studentModel" OnSubmit="@AddtoList">
+    <input type="number" placeholder="Enter Id" @bind="studentModel.Id" />
+    <input type="text" placeholder="Enter Name" @bind="studentModel.FullName" />
+    <input type="text" placeholder="Enter Description" @bind="studentModel.Description" />
+    <button type="submit">Add</button>
+    </EditForm>
+
+@code {
+    private string? Message { get; set; }
+    private StudentModel studentModel = new();
+
+    private List<StudentModel> Studentlist = new();
+    protected override void OnInitialized()
+    {
+        Studentlist = StudentService.Get();
+    }
+    private void Delete(String id)
+    {
+        StudentService.Delete(id);
+        Studentlist = StudentService.Get();
+    }
+    private void AddtoList()
+    {
+
+    }
+
+}
