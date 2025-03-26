@@ -1,0 +1,28 @@
+name: Deploy Blazor App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build Blazor WebAssembly
+        run: dotnet publish BlazorApp1/BlazorApp1.csproj -c Release -o release
+
+      - name: Upload to GitHub Pages
+        uses: actions/upload-artifact@v2
+        with:
+          name: blazor-app
+          path: release/wwwroot
